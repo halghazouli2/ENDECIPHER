@@ -22,11 +22,12 @@ loginBtn.addEventListener("click", async (e) => {
     body: JSON.stringify(user)
   })
   const userRes = await response.json();
-
   if(userRes.status === "ok"){
+    console.log(userRes.user)
 
     alert("login successfully");
     window.location.href = "EnDeCipherFile.html"
+    window.localStorage.setItem("user", JSON.stringify(userRes.user))
 
   }else{
 
