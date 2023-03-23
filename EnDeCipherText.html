@@ -67,23 +67,23 @@
     font-weight: bold;
   }
 </style>
-</head>
+  </head>
   <body>
-  <img style="text-align: center;" src= logoLock.png>
+    <img style="text-align: center;" src="logoLock.png">
     <h1 style="font-size:100px; color:#f4c2c2; margin:10px; font-family: Times; " >En-De Cipher</h1>
-	<b><h2 style=" text-align: left; font-family: monospace">Welcome to En-De Cipher! Begin Encrypting and Decrypting Text using our free application!</h2></b>
-	<h1><style type='text/css'>
-		body{
-		color: white;
-	    background-image:url('https://i.pinimg.com/originals/e8/ab/83/e8ab83923295950ea0456f39aed9f5f6.jpg');}
-	</style></h1>
+    <b><h2 style="text-align: left; font-family: monospace">Welcome to En-De Cipher! Begin Encrypting and Decrypting Text using our free application!</h2></b>
+    <h1><style type='text/css'>
+      body{
+        color: white;
+        background-image:url('https://i.pinimg.com/originals/e8/ab/83/e8ab83923295950ea0456f39aed9f5f6.jpg');}
+    </style></h1>
     <form>
       <label for="text">Text:</label>
       <textarea id="text" rows="10" cols="80"></textarea>
-      <i><label for="password">KEY:</label></i><div style= color:black; style=font-size:10px; class="divTableCell">(minumum length 10 characters!)</div>
+      <i><label for="password">KEY:</label></i><div style="color:black;font-size:10px;" class="divTableCell">(minimum length 10 characters!)</div>
       <input type="password" id="password" minlength="10">
-      <button id="encryptBtn">Encrypt</button>
-      <button id="decryptBtn">Decrypt</button>
+      <button type="button" id="encryptBtn" onclick="encrypt()">Encrypt</button>
+      <button type="button" id="decryptBtn" onclick="encrypt()">Decrypt</button>
     </form>
     <div class="output">
      <center><h3>Encrypted Text:</h3></center>
@@ -94,4 +94,86 @@
       <textarea id="decrypted" rows="10" cols="80" readonly></textarea>
     </div>
 
+    <script>
+	const alphabet = "abcdefghijklmnopqrstuvwxyz";
+	const alphabetLength = alphabet.length;
+
+	const textInput = document.getElementById("text");
+	const passwordInput = document.getElementById("password");
+	const encryptBtn = document.getElementById("encryptBtn");
+	const decryptBtn = document.getElementById("decryptBtn");
+	const encryptedOutput = document.getElementById("encrypted");
+	const decryptedOutput = document.getElementById("decrypted");
+
+	function encrypt() 
+	{
+	  const plaintext = textInput.value;
+	  const password = passwordInput.value;
+	  let ciphertext = "";
+	  for (let i = 0; i < plaintext.length; i++) 
+	  {
+		let char = plaintext.charAt(i);
+		if (char.match(/[a-z]/i)) 
+		{
+
+		  const passwordCharCode = password.charCodeAt(i % password.length);
+		  const shift = passwordCharCode % alphabetLength;
+		  const charIndex = alphabet.indexOf(char.toLowerCase());
+		  const shiftedIndex = (charIndex + shift) % alphabetLength;
+		  const shiftedChar = alphabet.charAt(shiftedIndex);
+
+		  if (char === char.toUpperCase()) {
+			ciphertext += shiftedChar.toUpperCase();
+		  } else {
+			ciphertext += shiftedChar;
+		  }
+		} else {
+		  ciphertext += char;
+		}
+	  }
+	  encryptedOutput.value = ciphertext;
+	}
+
+
+	function decrypt() {
+	  const ciphertext = encryptedOutput.value;
+	  const password = passwordInput.value;
+	  let plaintext = "";
+	  for (let i = 0; i < ciphertext.length; i++) 
+	  {
+		let char = ciphertext.charAt(i);
+		if (char.match(/[a-z]/i)) 
+		{
+
+		  const passwordCharCode = password.charCodeAt(i % password.length);
+		  const shift = passwordCharCode % alphabetLength;
+		  const charIndex = alphabet.indexOf(char.toLowerCase());
+		  const shiftedIndex = (charIndex - shift + alphabetLength) % alphabetLength;
+		  const shiftedChar = alphabet.charAt(shiftedIndex);
+
+		  if (char === char.toUpperCase()) {
+			plaintext += shiftedChar.toUpperCase();
+		  } 
+		  else {
+			plaintext += shiftedChar;
+		  }
+		} 
+		else {
+		  plaintext += char;
+		}
+	  }
+	  decryptedOutput.value = plaintext;
+	}
+
+
+	encryptBtn.addEventListener("click", encrypt);
+	decryptBtn.addEventListener("click", decrypt);
+
+
+	encryptedOutput.addEventListener("input", function() 
+	{
+	  decrypt();
+	});
+           
+</script>
 
