@@ -34,10 +34,11 @@ btn.addEventListener("click", async (e) => {
     body: JSON.stringify(user)
   })
   const userRes = await response.json()
-  
+  console.log(userRes)
   if(userRes.status === "ok"){
     alert("signup a new user");
     window.location.href = "EnDeCipherFile.html";
+    window.localStorage.setItem("user", JSON.stringify(userRes.user))
   }else {
     if(userRes.error.email !== ""){
       emailError.innerHTML = userRes.error.email;
