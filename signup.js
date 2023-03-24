@@ -26,7 +26,7 @@ btn.addEventListener("click", async (e) => {
     password: passwordValue
   }
 
-  const response = await fetch("http://localhost:3000/signup", {
+  const response = await fetch("https://endecipherapi.onrender.com/signup", {
     method: "POST",
      headers: {
       "Content-Type": "application/json"
