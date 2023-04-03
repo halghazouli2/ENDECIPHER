@@ -36,7 +36,7 @@ loginBtn.addEventListener("click", async (e) => {
       passwordError.style.display = "block"
       userNameError.style.display = "none"
 
-    }else if(userRes.error === "this userName is not exist, Please Signup."){
+    }else if(userRes.error === "this userName does not exist, Please Signup."){
 
       userNameError.innerHTML = userRes.error
       userNameError.style.display = "block"
