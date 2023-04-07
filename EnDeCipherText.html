@@ -66,17 +66,27 @@
     margin-bottom: 0.5em;
     font-weight: bold;
   }
+
 </style>
   </head>
   <body>
-    <img style="text-align: center;" src="logoLock.png">
+    <div style="display: flex;justify-content: end;align-items: end;width: 100%;">
+      <button style = "background-color: aliceblue;
+      color: #666;
+      text-align: right;
+      border-radius: 0px;
+      font-weight: bold;" id="logoutt" >Logout</button>
+
+    </div>
+    <img style="width: 40px;height: 40px;" src="cipher.png">
     <h1 style="font-size:100px; color:#f4c2c2; margin:10px; font-family: Times; " >En-De Cipher</h1>
-    <b><h2 style="text-align: left; font-family: monospace">Welcome to En-De Cipher! Begin Encrypting and Decrypting Text using our free application!</h2></b>
+    <b><h2 style="text-align: left; font-family: monospace">Welcome <span id="userr" style="color: #f4c2c2;"></span> to En-De Cipher! Begin Encrypting and Decrypting Text using our free application!</h2></b>
     <h1><style type='text/css'>
       body{
         color: white;
         background-image:url('https://i.pinimg.com/originals/e8/ab/83/e8ab83923295950ea0456f39aed9f5f6.jpg');}
     </style></h1>
+
     <form>
       <label for="text">Text:</label>
       <textarea id="text" rows="10" cols="80"></textarea>
@@ -95,66 +105,7 @@
      <center><h3>Decrypted Text:</h3></center>
       <textarea id="decrypted" rows="10" cols="80" readonly></textarea>
     </div>
-
-<script>
-const alphabet = "abcdefghijklmnopqrstuvwxyz";
-const alphabetLength = alphabet.length;
-
-const textInput = document.getElementById("text");
-const passwordInput = document.getElementById("password");
-const encryptBtn = document.getElementById("encryptBtn");
-const decryptBtn = document.getElementById("decryptBtn");
-const encryptedOutput = document.getElementById("encrypted");
-const decryptedOutput = document.getElementById("decrypted");
-
-let ciphertextBytes, iv;
-
-async function encrypt() {
-  const plaintext = textInput.value;
-  const password = passwordInput.value;
-  if (password.length < 16) {
-    alert("Password should be at least 16 characters long!");
-    return;
-  }
-
-  const plaintextBytes = new TextEncoder().encode(plaintext);
-  const passwordBytes = new TextEncoder().encode(password);
-
-  const key = await crypto.subtle.importKey("raw", passwordBytes, "PBKDF2", false, ["deriveKey"]);
-  const derivedKey = await crypto.subtle.deriveKey({
-    name: "PBKDF2",
-    salt: passwordBytes,
-    iterations: 100000,
-    hash: "SHA-256"
-  }, key, { name: "AES-GCM", length: 256 }, false, ["encrypt"]);
-
-  iv = crypto.getRandomValues(new Uint8Array(12));
-
-  const ciphertext = await crypto.subtle.encrypt({ name: "AES-GCM", iv: iv }, derivedKey, plaintextBytes);
-
-  ciphertextBytes = new Uint8Array(ciphertext);
-  const ciphertextHex = Array.from(ciphertextBytes).map(b => b.toString(16).padStart(2, "0")).join("");
-
-  encryptedOutput.value = ciphertextHex;
-}
-
-async function decrypt() {
-  const key = await crypto.subtle.importKey("raw", new TextEncoder().encode(passwordInput.value), "PBKDF2", false, ["deriveKey"]);
-  const derivedKey = await crypto.subtle.deriveKey({
-    name: "PBKDF2",
-    salt: new TextEncoder().encode(passwordInput.value),
-    iterations: 100000,
-    hash: "SHA-256"
-  }, key, { name: "AES-GCM", length: 256 }, false, ["decrypt"]);
-
-  const decryptedBytes = await crypto.subtle.decrypt({ name: "AES-GCM", iv: iv }, derivedKey, ciphertextBytes);
-  const decryptedPlaintext = new TextDecoder().decode(decryptedBytes);
-
-  decryptedOutput.value = decryptedPlaintext;
-}
-
-encryptBtn.addEventListener("click", encrypt);
-decryptBtn.addEventListener("click", decrypt);
-</script>
+    <script src="EnDeCipherText.js"></script>
+  
   </body></html>
 
