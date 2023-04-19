@@ -14,7 +14,7 @@ body {
 
 .login-box {
   width: 360px;
-  height: 280px;
+  height: 300px;
   margin: auto;
   border-radius: 3px;
   background-color: #999;
@@ -94,21 +94,36 @@ form label {
 
 form input {
   width: 100%;
-  padding: 7px;
+  padding: 10px;
   border: none;
-  border: 1px solid gray;
-  border-radius: 6px;
+  border-bottom: 2px solid #aaa;
   outline: none;
+  background: transparent;
+  transition: all 0.3s ease-in-out;
 }
+
+form input:focus {
+  border-bottom: 2px solid #f4c2c2;
+}
+
 input[type="button"] {
-  width: 320px;
-  height: 35px;
+  width: 100%;
+  height: 50px;
   margin-top: 20px;
   border: none;
-  background-color: #777;
-  color: #f4c2c2;
+  background-color: #555;
+  color: #fff;
   font-size: 18px;
-} 
+  cursor: pointer;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease-in-out;
+}
+
+input[type="button"]:hover {
+  background-color: #f4c2c2;
+  color: #555;
+}
 
 p {
   text-align: center;
@@ -123,13 +138,22 @@ p {
 }
 .para-2 a {
   color: #f4c2c2;
+  text-decoration: none;
+}
+.para-2 a:hover{
+  color: #999;
 }
 footer{font-size: small;
 		font-weight: bold;
 		font-style: italic;}
 		
-.homepage {text-decoration: none;
+ .homepage {text-decoration: none;
 			text-align: left;
 			color: #f4c2c2;
 			font-family: Times;
-			font-size: 50px;}
+			font-size: 60px;} 
+    
+
+   
+
+

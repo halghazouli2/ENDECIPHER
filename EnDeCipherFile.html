@@ -1,206 +1,373 @@
 <!DOCTYPE html>
+
 <html lang="en">
-	<head>
-		
-		<title>En-De Cipher Project</title>
-	</head>
-	<style>
-		body {
-	  		font-family: 'Times New Roman', serif, 'sans-serif'; 
-			color: #E389B9;
-			font-size: 12pt;		
-		}
 
-		a, a:link, a:visited, a:active {
-			color: white;
-			text-decoration: underline;
-		}
+    <head>
 
-		a:hover {
-			cursor:pointer;
-			color: #F36196;
-		}
+       
 
-		.black10pointcourier {
-	  		font-family: 'courier'; 
-			color: black;
-			font-size: 20pt;		
-		}
+        <title>En-De Cipher Project</title>
 
-		.container {
-			width: 100%;
-			margin: 0 auto;
-		}
+    </head>
 
-		.dropzone {
-			border: 15px double white;
-			width: 15%;
-			padding: 1% 1% 5% 2%;
-			text-align: center;
-			margin: 0 auto;
-			
-		}
+    <style>
 
-		.divTablefullwidth{
-			display: table;
-			width: 100%;
-		}
+        body {
 
-		.divTable{
-			display: block;
-		}
+            font-family: 'Times New Roman', serif, 'sans-serif';
 
-		.divTableRow {
-			display: table-row;
-		}
-		.divTableCell {
-			display: table-cell;
-			padding: 3px 3px;
-		}
-		.divTableBody {
-			display: table-row-group;
-		}
+            color: #E389B9;
 
-		.greenspan {
-			color: green;	  
-		}
+            font-size: 12pt;        
 
-		.redspan {
-			color: red;	  
-		}
-	</style>	
-	<body>
-		<div class=container>
-			<div class="divTablefullwidth">
-				<div class="divTableBody">
-					<div class="divTableRow">
-						<div class="divTableCell" style="float: center;">
-							<img style="width: 40px; height:40px" src="cipher.png">
-							<center><h1 style="font-size:100px; color:#f4c2c2; margin:10px; font-family: Times; "> En-De Cipher </h1></center>
-							<h1><style type='text/css'>
-							body{
-							 color: white;
-							 background-image:url('https://i.pinimg.com/originals/e8/ab/83/e8ab83923295950ea0456f39aed9f5f6.jpg');}
-							</style></h1>
-							<b><h4 style=" text-align: left; font-family: monospace">Welcome <span id="user" style="color: #f4c2c2;"></span> to En-De Cipher! Begin Encrypting and Decrypting Files using our free application!</h4></b>
-						</div>
-						<div class="divTableCell" style="float: right;">
-							<h5>
-							<button id="btnRefresh" onClick="javascript:location.reload();">REFRESH</button>
-							<button id="btnDivEncrypt" onClick="javascript:switchdiv('encrypt');">ENCRYPT A FILE</button>
-							<button id="btnDivDecrypt" onClick="javascript:switchdiv('decrypt');">DECRYPT A FILE</button>
-							<button id="logout">Logout</button>
-							
-							</h5>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-			
-		<div class=container>
-		<hr style="color: pink; height:1px"/>
+        }
 
-		</div>
+ 
 
-		<div class="container" id=divEncryptfile>
-			<center><h2 style="text-decoration: none; font-size:30px; color:white; margin:10px; color: #f4c2c2; font-family:monospace; "> <a href = "EnDeCipherFile.html" style="text-decoration: none; ">Encrypt a File </a> OR <a href = "EnDeCipherText.html" style="text-decoration: none;" > Click here to Encrypt a text </a></center></h2>
-			<b><i><p>
-			To begin encrypting your file, choose a Key-Value by fulfilling the requirements below.
-			Then, the file will begin the process of encryption.
-			Make sure to save/download the encrypted file onto your system.</p></b></i>
+        a, a:link, a:visited, a:active {
 
-			<div class="divTable">
-				<div class="divTableBody">
-					<div class="divTableRow">
-						<div class="divTableCell">KEY</div>
-						<div class="divTableCell"><input id=txtEncpassphrase type=password size=30 onkeyup=javascript:encvalidate(); value=''></div>
-						<div class="divTableCell">(minumum length 8 characters!)</div>
-					</div>
-					<div class="divTableRow">
-						<div class="divTableCell">Re-enter KEY</div>
-						<div class="divTableCell"><input id=txtEncpassphraseretype type=password size=30 onkeyup=javascript:encvalidate(); value=''></div>
-						<div class="divTableCell"><span class=greenspan id=spnCheckretype></span></div>
-					</div>
-				</div>
-			</div>
+            color: white;
 
-			<p> </p>
+            text-decoration: underline;
 
-			<div>
-				<div class=dropzone id="encdropzone" ondrop="drop_handler(event);" ondragover="dragover_handler(event);" ondragend="dragend_handler(event);">
-					<p>To begin, <a onclick=javascript:encfileElem.click();>Click here</a> to select a file to Encrypt.</p>
-					<p><span id=spnencfilename></span></p>
-				</div>
-				<input type="file" id="encfileElem" style="display:none" onchange="selectfile(this.files)">
-			</div>
+        }
 
-			<p> </p>
+ 
 
-			<div class="divTable">
-				<div class="divTableBody">
-					<div class="divTableRow">
-						<div class="divTableCell"><button id=btnEncrypt onclick=javascript:encryptfile(); disabled>Encrypt File</button></div>
-						<div class="divTableCell"><span id=spnEncstatus></span></div>
-					</div>
-				</div>
-			</div>
+        a:hover {
 
-			<p> </p>
+            cursor:pointer;
 
-			<div>
-				<a id=aEncsavefile hidden><button>Save Encrypted File</button></a>
-			</div>
-		
-			<p> </p>
-		</div>
+            color: #F36196;
 
-		<div class="container" id=divDecryptfile>
-			<center><h2 style="font-size:30px; color:white; margin:10px; color: #f4c2c2; font-family:monospace;">Decrypt a File </h2></center>
-			<b><i><p>To Decrypt a file, please enter the KEY that was previously used to encrypt. Make sure to save/download the decrypted file onto your system.</p></b></i>
+        }
 
-			<div class="divTable">
-				<div class="divTableBody">
-					<div class="divTableRow">
-						<div class="divTableCell">KEY</div>
-						<div class="divTableCell"><input id=txtDecpassphrase type=password size=30 onkeyup=javascript:decvalidate(); value=''></div>
-					</div>
-				</div>
-			</div>
+ 
 
-			<p> </p>
+        .black10pointcourier {
 
-			<div>
-					<div class=dropzone  id="decdropzone" ondrop="drop_handler(event);" ondragover="dragover_handler(event);" ondragend="dragend_handler(event);">
-						<p>To begin,  <a role=button onclick=javascript:decfileElem.click();>Click here</a> to select a file to Decrypt.</p>
-						<p><span id=spndecfilename></span></p>
-					</div>
-					<input type="file" id="decfileElem" style="display:none" onchange="selectfile(this.files)">
-			</div>
+            font-family: 'courier';
 
-			<p> </p>
+            color: black;
 
-			<div class="divTable">
-				<div class="divTableBody">
-					<div class="divTableRow">
-						<div class="divTableCell"><button id=btnDecrypt onclick=javascript:decryptfile(); disabled>Decrypt File</button></div>
-						<div class="divTableCell"><span id=spnDecstatus></span></div>
-					</div>
-				</div>
-			</div>
+            font-size: 20pt;        
 
-			<p> </p>
+        }
 
-			<div>
-				<a id=aDecsavefile hidden><button>Save Decrypted File</button></a>
-			</div>
-		
-			<p> </p>
-		</div>
+ 
 
-		
-		<BR>
-			<script src="enDeCipherFile.js"></script>
-			
-	</body>
+        .container {
+
+            width: 100%;
+
+            margin: 0 auto;
+
+        }
+
+ 
+
+        .dropzone {
+
+            border: 15px double lightgray;
+
+            width: 15%;
+
+            padding: 1% 1% 5% 2%;
+
+            text-align: center;
+
+            margin: 0 auto;
+
+            font-size: 20px;
+
+        }
+
+ 
+
+        .divTablefullwidth{
+
+            display: table;
+
+            width: 100%;
+
+        }
+
+ 
+
+        .divTable{
+
+            display: block;
+
+        }
+
+ 
+
+        .divTableRow {
+
+            display: table-row;
+
+        }
+
+        .divTableCell {
+
+            display: table-cell;
+
+            padding: 3px 3px;
+
+        }
+
+        .divTableBody {
+
+            display: table-row-group;
+
+        }
+
+ 
+
+        .greenspan {
+
+            color: green;    
+
+        }
+
+ 
+
+        .redspan {
+
+            color: red;  
+
+        }
+
+        button {
+
+            background-color: pink;
+
+            color: white;
+
+            font-family: 'Open Sans', sans-serif;
+
+            border-radius: 8px;
+
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+
+            padding: 5px 5px;
+
+            border: none;
+
+            cursor: pointer;
+
+        }
+
+ 
+
+        button:not(#logout):hover {
+
+            background-color: lightgray;
+
+        }
+
+ 
+
+        button#logout:hover {
+
+            background-color: red;
+
+        }
+
+                                 
+
+    </style>    
+
+    <body>
+
+        <div class=container>
+
+            <div class="divTablefullwidth">
+
+                <div class="divTableBody">
+
+                    <div class="divTableRow">
+
+                        <div class="divTableCell" style="float: center;">
+
+                            <img style="width: 40px; height:40px" src="cipher.png">
+
+                            <center><div style="text-align:center; margin-left: 4in;">
+
+                            <h1 style="font-size: 100px; color:#f4c2c2; margin:10px; font-family: 'Montserrat', sans-serif; letter-spacing: 5px; text-shadow: 3px 3px 3px #777;">En-De Cipher</h1></div></center>
+
+                            <h1><style type='text/css'>
+
+                            body{
+
+                             color: white;
+
+                             background-image:url('https://i.pinimg.com/originals/e8/ab/83/e8ab83923295950ea0456f39aed9f5f6.jpg');}
+
+                            </style></h1>
+
+                            <b><h4 style="text-align:center; margin-left: 4in;" font-family: monospace; opacity: 0; animation: fadeIn 2s forwards;"><center>Welcome <span id="user" style="color: #f4c2c2;"></span> to En-De Cipher! Begin Encrypting and Decrypting Files using our free application!</h4></b></center>
+
+ 
+
+                        <style>
+
+                        @keyframes fadeIn {
+
+                            from {
+
+                            opacity: 0;
+
+                            }
+
+                            to {
+
+                            opacity: 1;
+
+                            }
+
+                        }
+
+                        </style></div>
+
+                        <style>
+
+                            @keyframes fadeIn {
+
+                              from {
+
+                                opacity: 0;
+
+                              }
+
+                              to {
+
+                                opacity: 1;
+
+                              }
+
+                            }
+
+                         
+
+                            h4 {
+
+                              text-align: center;
+
+                              /*margin-left: 4in;*/
+
+                              font-family: monospace;
+
+                              opacity: 0;
+
+                              animation: fadeIn 2s forwards;
+
+                            }
+                          </style>
+                        <div class="divTableCell" style="float: right;">
+                            <h5>
+                            <button id="btnRefresh" onClick="javascript:location.reload();">REFRESH</button>
+                            <button id="btnDivEncrypt" onClick="javascript:switchdiv('encrypt');">ENCRYPT A FILE</button>
+                            <button id="btnDivDecrypt" onClick="javascript:switchdiv('decrypt');">DECRYPT A FILE</button>
+                            <button id="logout">Logout</button>
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class=container>
+        <hr style="color: pink; height:1px"/>
+        </div>
+        <div class="container" id=divEncryptfile>
+
+            <center><h2 style="text-decoration: none; font-size:30px; color:white; margin:10px; color: #f4c2c2; font-family:monospace; "> <a href = "EnDeCipherFile.html" style="text-decoration: none; ">Encrypt a File </a> OR <a href = "EnDeCipherText.html" style="text-decoration: none;" > Click here to Encrypt a text </a></center></h2>
+
+            <b><i><p>
+
+            To begin encrypting your file, choose a Key-Value by fulfilling the requirements below.
+
+            Then, the file will begin the process of encryption.
+
+            Make sure to save/download the encrypted file onto your system.</p></b></i>
+
+            <div class="divTable">
+                <div class="divTableBody">
+                    <div class="divTableRow">
+
+                        <div class="divTableCell">KEY</div>
+                        <div class="divTableCell">
+                        <input id="txtEncpassphrase" type="password" size="30" onkeyup="javascript:encvalidate();" value="">
+                        </div>
+                        <div class="divTableCell">
+                        <span style="font-style: italic; font-size: 12px; color: #F36196;">(Minimum length of 16 characters required)</span>
+                        </div>
+                    </div>
+                    <div class="divTableRow">
+                        <div class="divTableCell">Confirm KEY</div>
+                        <div class="divTableCell"><input id=txtEncpassphraseretype type=password size=30 onkeyup=javascript:encvalidate(); value=''></div>
+                        <div class="divTableCell"><span class=greenspan id=spnCheckretype></span></div>
+                    </div>
+                </div>
+            </div>
+            <p> </p>
+            <div>
+                <div class=dropzone id="encdropzone" ondrop="drop_handler(event);" ondragover="dragover_handler(event);" ondragend="dragend_handler(event);">
+                    <p>To begin, <a onclick=javascript:encfileElem.click();>Click here</a> to select a file to Encrypt.</p><p><i>(Any file type is now accepted!)</p></i>
+                    <p><span id=spnencfilename></span></p>
+                </div>
+                <input type="file" id="encfileElem" accept=".doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" style="display:none" onchange="selectfile(this.files)">
+            </div>
+            <p> </p>
+            <div class="divTable">
+                <div class="divTableBody">
+                    <div class="divTableRow">
+                        <div class="divTableCell"><button id=btnEncrypt onclick=javascript:encryptfile(); disabled>Encrypt File</button></div>
+                        <div class="divTableCell"><span id=spnEncstatus></span></div>
+                    </div>
+                </div>
+            </div>
+            <p> </p>
+            <div>
+                <a id=aEncsavefile hidden><button>Save Encrypted File</button></a>
+            </div>
+        <p> </p>
+	        </div>
+        <div class="container" id=divDecryptfile>
+            <center><h2 style="font-size:30px; color:white; margin:10px; color: #f4c2c2; font-family:monospace;">Decrypt a File </h2></center>
+            <b><i><p>To Decrypt a file, please enter the KEY that was previously used to encrypt. Make sure to save/download the decrypted file onto your system.</p></b></i>
+            <div class="divTable">
+                <div class="divTableBody">
+                    <div class="divTableRow">
+                        <div class="divTableCell">KEY</div>
+                        <div class="divTableCell"><input id=txtDecpassphrase type=password size=30 onkeyup=javascript:decvalidate(); value=''></div>
+                    </div>
+                </div>
+            </div>
+            <p> </p>
+            <div>
+                    <div class=dropzone  id="decdropzone" ondrop="drop_handler(event);" ondragover="dragover_handler(event);" ondragend="dragend_handler(event);">
+                        <p>To begin,  <a role=button onclick=javascript:decfileElem.click();>Click here</a> to select a file to Decrypt.</p>
+                        <p><span id=spndecfilename></span></p>
+                    </div>
+                    <input type="file" id="decfileElem" style="display:none" onchange="selectfile(this.files)">
+            </div>
+            <p> </p>
+            <div class="divTable">
+                <div class="divTableBody">
+                    <div class="divTableRow">
+                        <div class="divTableCell"><button id=btnDecrypt onclick=javascript:decryptfile(); disabled>Decrypt File</button></div>
+                        <div class="divTableCell"><span id=spnDecstatus></span></div>
+                    </div>
+                </div>
+            </div>
+            <p> </p>
+            <div>
+                <a id=aDecsavefile hidden><button>Save Decrypted File</button></a>
+            </div>
+<p> </p>
+        </div>
+        <BR>
+            <script src="enDeCipherFile.js"></script>
+    </body>
 </html>
