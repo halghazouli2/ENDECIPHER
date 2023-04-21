@@ -56,17 +56,7 @@ async function decrypt() {
 
 encryptBtn.addEventListener("click", encrypt);
 decryptBtn.addEventListener("click", decrypt);
-////
-////
-////
-////
-// window.onload = function() {
-//   let user = document.getElementById("userr");
-//   if (user) {
-//       let userInfo = JSON.parse(window.localStorage.getItem("user"));
-//       user.innerHTML = userInfo.firstName;
-//   }
-// };
+
 let user = document.getElementById('userr')
 let userInfo = JSON.parse(window.localStorage.getItem("user"));
 console.log(userInfo)

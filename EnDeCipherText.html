@@ -20,7 +20,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #f2f2f2;
+    background-color: lightgray;
     padding: 2em;
     border-radius: 13px;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
@@ -30,7 +30,7 @@
     margin-bottom: 0.5em;
     font-weight: bold;
 	font-size: 20px;
-	color: black;
+	color: #444;
   }
 
   input,
@@ -44,7 +44,7 @@
 
   button {
     padding: 0.5em 1em;
-    background-color: pink;
+    background-color: #F36196;
     color: #fff;
     border-radius: 0px;
     border: none;
@@ -54,7 +54,7 @@
 
   .output {
     margin-top: 2em;
-    background-color: #f2f2f2;
+    background-color: lightgray;
     padding: 2em;
     border-radius: 10px;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
@@ -80,7 +80,13 @@
 
     </div>
     <img style="width: 40px;height: 40px;" src="cipher.png">
-    <h1 style="font-size:100px; color:#f4c2c2; margin:10px; font-family: Times; " >En-De Cipher</h1>
+    <h1 style="font-size: 90px;
+    color: #f4c2c2;
+    font-family: Times;
+    text-align: center;
+    line-height: 200%;
+    text-shadow: 2px 1px 2px #aaa6a6;
+    opacity: 0.9;" >En-De Cipher</h1>
     <b><h2 style="text-align: left; font-family: monospace">Welcome <span id="userr" style="color: #f4c2c2;"></span> to En-De Cipher! Begin Encrypting and Decrypting Text using our free application!</h2></b>
     <h1><style type='text/css'>
       body{
@@ -91,19 +97,19 @@
     <form>
       <label for="text">Text:</label>
       <textarea id="text" rows="10" cols="80"></textarea>
-      <i><label for="password">KEY:</label></i><div style="color:black;font-size:10px;" class="divTableCell">(minimum length 16 characters!)</div>
+      <i><label for="password">KEY:</label></i><div style="color:#F36196;font-size:10px;" class="divTableCell">(minimum length 16 characters!)</div>
       <input type="password" id="password" minlength="16">
       <button type="button" id="encryptBtn" onclick="encrypt()">Encrypt</button>
     </form>
     <div class="output">
-     <center><h3>Encrypted Text:</h3></center>
+     <center><h3 style="color:#444;">Encrypted Text:</h3></center>
      <textarea id="encrypted" rows="10" cols="80" readonly></textarea>
-     <center><label for="password">Re-enter KEY to Decrypt:</label><div style="color:black;font-size:10px;" class="divTableCell">(minimum length 16 characters!)</div></center>
+     <center><label for="password">Re-enter KEY to Decrypt:</label><div style="color:#F36196 ;font-size:10px;" class="divTableCell">(minimum length 16 characters!)</div></center>
      <center><input type="password" id="password" minlength="16"></center>
      <center><button type="button" id="decryptBtn" onclick="decrypt()">Decrypt</button></center>
     </div>
     <div class="output">
-     <center><h3>Decrypted Text:</h3></center>
+     <center><h3 style="color:#444;">Decrypted Text:</h3></center>
       <textarea id="decrypted" rows="10" cols="80" readonly></textarea>
     </div>
     <script src="EnDeCipherText.js"></script>
