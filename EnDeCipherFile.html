@@ -1,3 +1,7 @@
+
+//The code defines a web page for the "En-De Cipher Project". 
+//it sets the page title, adds a favicon, and defines the CSS styles for the page.
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -8,171 +12,78 @@
 
     </head>
 
+    // style css for the EnDeCipherFile
     <style>
 
         body {
-
             font-family: 'Times New Roman', serif, 'sans-serif';
-
             color: #E389B9;
-
             font-size: 12pt;        
-
         }
-
- 
-
         a, a:link, a:visited, a:active {
-
             color: white;
-
             text-decoration: underline;
-
         }
-
- 
-
         a:hover {
-
             cursor:pointer;
-
             color: #F36196;
-
         }
-
- 
-
         .black10pointcourier {
-
             font-family: 'courier';
-
             color: black;
-
             font-size: 20pt;        
-
         }
-
- 
-
         .container {
-
             width: 100%;
-
             margin: 0 auto;
-
         }
-
- 
-
         .dropzone {
-
             border: 15px double lightgray;
-
             width: 15%;
-
             padding: 1% 1% 5% 2%;
-
             text-align: center;
-
             margin: 0 auto;
-
             font-size: 20px;
-
         }
-
- 
-
         .divTablefullwidth{
-
             display: table;
-
             width: 100%;
-
         }
-
- 
-
         .divTable{
-
             display: block;
-
         }
-
- 
-
         .divTableRow {
-
             display: table-row;
-
         }
-
         .divTableCell {
-
             display: table-cell;
-
             padding: 3px 3px;
-
         }
-
         .divTableBody {
-
             display: table-row-group;
-
         }
-
- 
-
         .greenspan {
-
             color: rgb(129, 185, 129);    
-
         }
-
- 
-
         .redspan {
-
             color: #F36196;  
-
         }
-
         button {
-
             background-color: pink;
-
             color: #F36196;
-
             font-family: 'Open Sans', sans-serif;
-
             border-radius: 8px;
-
             box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-
             padding: 5px 5px;
-
             border: none;
-
             cursor: pointer;
-
         }
-
- 
-
         button:not(#logout):hover {
-
             background-color: lightgray;
-
         }
-
- 
-
         button#logout:hover {
-
             background-color: #F36196;
-
-        }
-
-                                 
+        }                        
 
     </style>    
 
@@ -197,69 +108,36 @@
                             <h1><style type='text/css'>
 
                             body{
-
                              color: white;
-
                              background-image:url('https://i.pinimg.com/originals/e8/ab/83/e8ab83923295950ea0456f39aed9f5f6.jpg');}
-
                             </style></h1>
-
                             <b><h4 style="text-align:center; margin-left: 4in;" font-family: monospace; opacity: 0; animation: fadeIn 2s forwards;"><center>Welcome <span id="user" style="color: #f4c2c2;"></span> to En-De Cipher! Begin Encrypting and Decrypting Files using our free application!</h4></b></center>
 
- 
-
                         <style>
-
                         @keyframes fadeIn {
-
                             from {
-
                             opacity: 0;
-
                             }
-
                             to {
-
                             opacity: 1;
-
                             }
-
                         }
-
                         </style></div>
-
                         <style>
-
                             @keyframes fadeIn {
-
                               from {
-
                                 opacity: 0;
-
                               }
-
                               to {
-
                                 opacity: 1;
-
                               }
-
                             }
-
-                         
-
                             h4 {
-
                               text-align: center;
-
                               /*margin-left: 4in;*/
-
                               font-family: monospace;
-
                               opacity: 0;
-
                               animation: fadeIn 2s forwards;
-
                             }
                           </style>
                         <div class="divTableCell" style="float: right;">
@@ -366,6 +244,7 @@
 <p> </p>
         </div>
         <BR>
+            //linking it with the javascript code 
             <script src="enDeCipherFile.js"></script>
     </body>
 </html>
